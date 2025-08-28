@@ -333,7 +333,13 @@ section {
 
 /* Projects Section */
 .projects {
-  background: var(--background-secondary);
+  background: linear-gradient(180deg, 
+    var(--background-secondary) 0%,
+    var(--background-secondary) 60%, 
+    rgba(15, 23, 42, 0.1) 80%,
+    rgba(15, 23, 42, 0.3) 90%,
+    var(--background-dark) 100%
+  );
   position: relative;
   overflow: hidden;
 }
@@ -538,7 +544,103 @@ section {
   box-shadow: var(--shadow-xl);
 }
 
-/* Pulsing circle effect */
+/* Transition Section */
+.transition-section {
+  height: 200px;
+  background: linear-gradient(180deg,
+    var(--background-secondary) 0%,
+    rgba(248, 250, 252, 0.9) 10%,
+    rgba(241, 245, 249, 0.8) 20%,
+    rgba(226, 232, 240, 0.7) 30%,
+    rgba(203, 213, 225, 0.6) 40%,
+    rgba(148, 163, 184, 0.5) 50%,
+    rgba(100, 116, 139, 0.4) 60%,
+    rgba(51, 65, 85, 0.3) 70%,
+    rgba(30, 41, 59, 0.2) 80%,
+    rgba(15, 23, 42, 0.1) 90%,
+    var(--background-dark) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg,
+    transparent 0%,
+    rgba(99, 102, 241, 0.05) 25%,
+    rgba(139, 92, 246, 0.05) 50%,
+    rgba(245, 158, 11, 0.05) 75%,
+    transparent 100%
+  );
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.floating-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(1px);
+  opacity: 0.6;
+}
+
+.circle-1 {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.3), transparent);
+  top: 30%;
+  left: 20%;
+  animation: float-1 8s ease-in-out infinite;
+}
+
+.circle-2 {
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.4), transparent);
+  top: 60%;
+  right: 30%;
+  animation: float-2 6s ease-in-out infinite reverse;
+}
+
+.circle-3 {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.2), transparent);
+  bottom: 20%;
+  left: 60%;
+  animation: float-3 10s ease-in-out infinite;
+}
+
+@keyframes float-1 {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-30px) translateX(20px) scale(1.1); }
+}
+
+@keyframes float-2 {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-20px) translateX(-15px) scale(0.9); }
+}
+
+@keyframes float-3 {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-25px) translateX(-30px) scale(1.2); }
+}
 .stats::after {
   content: '';
   position: absolute;
@@ -551,28 +653,6 @@ section {
   transform: translate(50%, -50%);
   animation: pulse-circle 6s ease-in-out infinite;
   z-index: 0;
-}
-
-.stats::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 150px;
-  background: url("data:image/svg+xml,%3Csvg width='1200' height='150' viewBox='0 0 1200 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,50 C400,130 800,-30 1200,50 L1200,0 L0,0 Z' fill='%23f8fafc'/%3E%3C/svg%3E") no-repeat center top;
-  background-size: cover;
-  z-index: 1;
-  animation: wave-flow-reverse 10s ease-in-out infinite;
-}
-
-@keyframes wave-flow-reverse {
-  0%, 100% {
-    transform: translateX(0) scaleX(1);
-  }
-  50% {
-    transform: translateX(30px) scaleX(0.95);
-  }
 }
 
 /* Additional pulsing circle */
@@ -731,29 +811,6 @@ section {
   color: var(--text-primary-dark);
   position: relative;
   overflow: hidden;
-}
-
-/* Diagonal transition from dark to dark */
-.skills::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 150px;
-  background: url("data:image/svg+xml,%3Csvg width='1200' height='150' viewBox='0 0 1200 150' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,80 C300,10 600,140 1200,60 L1200,0 L0,0 Z' fill='%230f172a'/%3E%3C/svg%3E") no-repeat center top;
-  background-size: cover;
-  z-index: 1;
-  animation: wave-flow-skills 12s ease-in-out infinite;
-}
-
-@keyframes wave-flow-skills {
-  0%, 100% {
-    transform: translateX(0) scaleY(1);
-  }
-  50% {
-    transform: translateX(20px) scaleY(1.1);
-  }
 }
 
 .skills .section-title,
