@@ -1,34 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useEffect, useState } from 'react'
+import { motion, useScroll, useSpring } from 'framer-motion'
+import Header from './components/Header'
+import Hero from './components/Hero'
+import Projects from './components/Projects'
+import Stats from './components/Stats'
+import Skills from './components/Skills'
+import Contact from './components/Contact'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  })
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app">
+      <motion.div className="progress-bar" style={{ scaleX }} />
+      <Header />
+      <main>
+        <Hero />
+        <Projects />
+        <Stats />
+        <Skills />
+        <Contact />
+      </main>
+    </div>
   )
 }
 
