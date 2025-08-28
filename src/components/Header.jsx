@@ -3,10 +3,18 @@ import { motion } from 'framer-motion'
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
+      
+      // Check if we're in the dark sections (About Me and beyond)
+      const aboutSection = document.getElementById('about')
+      if (aboutSection) {
+        const aboutTop = aboutSection.offsetTop - 100
+        setIsDarkMode(window.scrollY >= aboutTop)
+      }
     }
     
     window.addEventListener('scroll', handleScroll)
@@ -20,7 +28,7 @@ const Header = () => {
 
   return (
     <motion.header 
-      className={`header ${isScrolled ? 'scrolled' : ''}`}
+      className={`header ${isScrolled ? 'scrolled' : ''} ${isDarkMode ? 'dark-mode' : ''}`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
